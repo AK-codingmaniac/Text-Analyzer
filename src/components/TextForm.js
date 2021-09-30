@@ -43,13 +43,13 @@ export default function TextForm(props) {
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary mx-3" onClick={handleLowClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary" onClick={handlecopy}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handlecopy}>
           Copy Text
         </button>
       </div>
@@ -59,11 +59,11 @@ export default function TextForm(props) {
       >
         <h1>Your text summary</h1>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} minutes read</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes read</p>
         <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter some text to preview it"}</p>
+        <p>{text.length>0?text:"Nothing to preview"}</p>
       </div>
     </>
   );
